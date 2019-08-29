@@ -91,7 +91,7 @@ export default class DetailGallery extends Component {
   }
 
   render () {
-    const images = getImages(this.props.mlsID, this.props.photoCount)
+    const images = getImages(this.props.mlsID, this.props.photoCount || 1)
     const thumbPages = chunkArray(images, 4)
     let mainSwipeRef, thumbSwipeRef
 
