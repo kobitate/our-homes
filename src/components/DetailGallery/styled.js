@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Clipboard from 'react-clipboard.js'
 
 const Gallery = styled.div`
   padding: 3px;
@@ -55,10 +56,24 @@ const GalleryThumb = styled.div`
   margin: 3px;
 `
 
+const GalleryImgLink = styled(Clipboard)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+  margin: 1em 1em 0;
+  background: rgba(0,0,0,0.5);
+  border-radius: 3px 0 0 3px;
+`
+
 export {
   Gallery,
   GalleryControls,
   GalleryControl,
   GalleryImg,
   GalleryThumbPage,
-  GalleryThumb }
+  GalleryThumb,
+  GalleryImgLink }

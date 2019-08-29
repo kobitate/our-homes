@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/pro-regular-svg-icons'
+import { faChevronLeft, faChevronRight, faLink } from '@fortawesome/pro-regular-svg-icons'
 
 import ReactSwipe from 'react-swipe'
 
@@ -12,7 +12,8 @@ import {
   GalleryControls,
   GalleryControl,
   GalleryThumbPage,
-  GalleryThumb } from './styled'
+  GalleryThumb,
+  GalleryImgLink } from './styled'
 
 export default class DetailGallery extends Component {
   constructor () {
@@ -107,6 +108,9 @@ export default class DetailGallery extends Component {
             <GalleryControls className='d-xs-none d-sm-flex'>
               <GalleryControl onClick={() => this.prev(mainSwipeRef, thumbSwipeRef)}><Icon icon={faChevronLeft} size='2x' /></GalleryControl>
               <GalleryControl onClick={() => this.next(mainSwipeRef, thumbSwipeRef)}><Icon icon={faChevronRight} size='2x' /></GalleryControl>
+              <GalleryImgLink data-clipboard-text={images[this.state.imageNum] || 'http://placekitten.com/500/400'}>
+                <Icon icon={faLink} />
+              </GalleryImgLink>
             </GalleryControls>
           </Gallery>
         </Col>
