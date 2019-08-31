@@ -1,11 +1,11 @@
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 
-const token = jwt.sign({}, process.env.REACT_APP_API_JWT_SECRET)
+// const token = jwt.sign({}, process.env.REACT_APP_API_JWT_SECRET)
 const options = {
-  headers: {
-    token
-  }
+  // headers: {
+  //   token
+  // }
 }
 
 const getHomes = () => {
