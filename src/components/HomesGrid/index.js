@@ -3,10 +3,10 @@ import { Row } from 'reactstrap'
 
 import HomesGridItem from '../HomesGridItem'
 
-const HomesTable = props => {
+const HomesGrid = props => {
   return (<Row noGutters>
     {props.homes.map(home => <HomesGridItem {...home} />)}
   </Row>)
 }
 
-export default HomesTable
+export default HomesGrid

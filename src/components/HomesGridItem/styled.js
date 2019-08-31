@@ -1,6 +1,11 @@
 import styled from 'styled-components'
-import { Row } from 'reactstrap'
+import { Row, Card } from 'reactstrap'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+
+const HomeCard = styled(Card)`
+  background-image: url(/img/home-loading.png);
+  background-size: cover;
+`
 
 const HomeCardImg = styled.div`
   height: 25vh;
@@ -11,17 +16,24 @@ const HomeCardImg = styled.div`
   background-repeat: no-repeat;
 `
 
+const HomeCardGradient = styled.div`
+  background: linear-gradient(360deg, rgba(0,0,0,1) 5%, rgba(0,0,0,0.8057598039215687) 30%, rgba(0,0,0,0) 79%, rgba(0,0,0,0) 100%);
+  padding: 25% .5em .2em .5em;
+  z-index: 101;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+`
+
 const HomeCardText = styled(Row)`
   color: white;
+  z-index: 102;
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 25% .5em .2em .5em;
+  padding: .2em .5em;
   display: flex;
   flex-wrap: nowrap;
-  background: linear-gradient(360deg, rgba(0,0,0,1) 5%, rgba(0,0,0,0.8057598039215687) 30%, rgba(0,0,0,0) 79%, rgba(0,0,0,0) 100%);
-  pointer-events: none;
-  touch-action: none;
   * { color: white; }
 `
 
@@ -43,7 +55,7 @@ const HomeCardTextInfo = styled.div`
 `
 
 const HomeCardBadges = styled.div`
-  z-index: 101;
+  z-index: 110;
   position: absolute;
   top: 0;
   padding: .5em;
@@ -89,7 +101,9 @@ const Control = styled.div`
 `
 
 export {
+  HomeCard,
   HomeCardImg,
+  HomeCardGradient,
   HomeCardText,
   HomeCardTextIcon,
   HomeCardTextInfo,
