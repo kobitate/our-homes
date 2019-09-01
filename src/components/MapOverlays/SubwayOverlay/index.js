@@ -1,20 +1,10 @@
 import React, { PureComponent } from 'react'
 import { CanvasOverlay } from 'react-map-gl'
+import MBTAColors from '../../../utils/MBTAColors'
 
 export default class SubwayOverlay extends PureComponent {
   _redraw ({ width, height, ctx, isDragging, project, unproject }) {
-    const colors = {
-      Blue: '#003da5',
-      Bus: '#ffc72c',
-      Commuter: '#80276c',
-      Ferry: '#008eaa',
-      Green: '#00843d',
-      Orange: '#ed8b00',
-      Red: '#da291c',
-      Silver: '#7c878e'
-    }
-
-    const { points, color = colors[this.props.line], lineWidth = 3, renderWhileDragging = true } = this.props
+    const { points, color = MBTAColors[this.props.line], lineWidth = 3, renderWhileDragging = true } = this.props
     ctx.clearRect(0, 0, width, height)
     ctx.globalCompositeOperation = 'lighter'
 
