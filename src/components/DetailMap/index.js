@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
 import polyline from '@mapbox/polyline'
 
-// import HomeMarker from '../MapOverlays/HomeMarker'
+import HomeMarker from '../MapOverlays/HomeMarker'
 import SubwayOverlay from '../MapOverlays/SubwayOverlay'
 
 import mbtaData from '../../data/mbta.json'
-import HomeMarker from '../MapOverlays/HomeMarker'
 
 class DetailMap extends Component {
   constructor (props) {
@@ -20,6 +19,12 @@ class DetailMap extends Component {
         zoom: 13
       }
     }
+  }
+
+  parseLine (desc) {
+    desc = desc.split(' - ')
+    const line = desc[1].replace('Line', '')
+    return line
   }
 
   render () {

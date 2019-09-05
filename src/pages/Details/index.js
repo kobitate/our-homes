@@ -8,6 +8,7 @@ import JSONView from '../../utils/JSONView'
 import DetailGallery from '../../components/DetailGallery'
 import DetailCard from '../../components/DetailCard'
 import DetailMap from '../../components/DetailMap'
+import DetailMetaTags from '../../components/DetailMetaTags'
 // import RoomDiagram from '../../components/RoomDiagram'
 
 export default class Home extends Component {
@@ -28,6 +29,7 @@ export default class Home extends Component {
 
   render () {
     return (<MainTemplate>
+      <DetailMetaTags {...this.state.home} />
       <Row noGutters>
         <Col xs={12} md={6} xl={4}>
           <DetailGallery {...this.state.home} />
