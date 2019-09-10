@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faExternalLink } from '@fortawesome/pro-regular-svg-icons'
-import { faTh, faThList } from '@fortawesome/pro-solid-svg-icons'
+import { faTh, faThList, faMap } from '@fortawesome/pro-solid-svg-icons'
 
 export default class index extends Component {
   // state = {  }
@@ -15,12 +16,32 @@ export default class index extends Component {
           <NavbarBrand href='/'>Our Homes</NavbarBrand>
           <Nav navbar>
             <NavItem>
+              <Link to='/' style={{ textDecoration: 'none' }}>
+                <NavLink
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href='http://vow.mlspin.com/?cid=6563713&pass=chbjcxbs'>
+                  <Icon icon={faThList} />&nbsp;List
+                </NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to='/map' style={{ textDecoration: 'none' }}>
+                <NavLink
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href='http://vow.mlspin.com/?cid=6563713&pass=chbjcxbs'>
+                  <Icon icon={faMap} />&nbsp;Map
+                </NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
               <NavLink
                 target='_blank'
                 rel='noopener noreferrer'
                 href='http://vow.mlspin.com/?cid=6563713&pass=chbjcxbs'>
-                  MLS PIN Login&nbsp;
-                <Icon icon={faExternalLink} />
+
+                <Icon icon={faExternalLink} />&nbsp;MLS PIN
               </NavLink>
             </NavItem>
           </Nav>
