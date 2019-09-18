@@ -33,4 +33,20 @@ function chunkArray (myArray, chunkSize) {
   return tempArray
 }
 
-export { getImages, chunkArray }
+const isValidGeocode = geocode => {
+  if (!geocode) {
+    return false
+  }
+  if (!geocode.latitude || !geocode.longitude) {
+    return false
+  }
+  if (geocode.latitude < -90 || geocode.latitude > 90) {
+    return false
+  }
+  if (geocode.longitude < -180 || geocode.longitude > 180) {
+    return false
+  }
+  return true
+}
+
+export { getImages, chunkArray, isValidGeocode }

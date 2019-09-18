@@ -7,6 +7,7 @@ import HomeMarker from '../MapOverlays/HomeMarker'
 import SubwayOverlay from '../MapOverlays/SubwayOverlay'
 
 import mbtaData from '../../data/mbta.json'
+import { isValidGeocode } from '../../utils/'
 
 class MapView extends Component {
   constructor (props) {
@@ -59,10 +60,10 @@ class MapView extends Component {
             points={polyline.decode(line.attributes.polyline)}
             line={line.relationships.route.data.id} />)}
         {this.props.homes && this.props.homes.map(home =>
-          <Marker
+          isValidGeocode(home.geocode) && <Marker
             key={`marker-${home.mlsID}`}
-            longitude={home.geocode && home.geocode.longitude}
-            latitude={home.geocode && home.geocode.latitude}>
+            longitude={home.geocode.longitude}
+            latitude={home.geocode.latitude}>
             <HomeMarker onClick={
               this.props.homeClickHandler
                 ? () => this.props.homeClickHandler(home)
