@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import ReactMapGL, { Marker } from 'react-map-gl'
+import ReactMapGL, { Marker, GeolocateControl } from 'react-map-gl'
+import WebMercatorViewport from 'viewport-mercator-project'
 import polyline from '@mapbox/polyline'
 
 import HomeMarker from '../MapOverlays/HomeMarker'
@@ -21,10 +22,24 @@ class MapView extends Component {
     }
   }
 
-  parseLine (desc) {
-    desc = desc.split(' - ')
-    const line = desc[1].replace('Line', '')
-    return line
+  locationViewportChange (viewport, homes) {
+    if (homes.length === 1) {
+      const userLoc = [viewport.longitude, viewport.latitude]
+      const houseLoc = [homes[0].geocode.longitude, homes[0].geocode.latitude]
+      const mapViewport = new WebMercatorViewport(this.state.viewport)
+      const { longitude, latitude, zoom } = mapViewport.fitBounds([userLoc, houseLoc], {
+        padding: 40
+      })
+      this.setState({
+        viewport: {
+          ...this.state.viewport,
+          longitude,
+          latitude,
+          zoom,
+          transitionDuration: 1000
+        }
+      })
+    }
   }
 
   render () {
@@ -53,6 +68,16 @@ class MapView extends Component {
                 ? () => this.props.homeClickHandler(home)
                 : () => {}} />
           </Marker>)}
+        <GeolocateControl
+          style={{
+            position: 'absolute',
+            margin: '.5em'
+          }}
+          positionOptions={{ enableHighAccuracy: true }}
+          fitBoundsOptions={{ maxZoom: 1 }}
+          trackUserLocation
+          onViewportChange={viewport => this.locationViewportChange(viewport, this.props.homes)}
+        />
       </ReactMapGL>
     )
   }
