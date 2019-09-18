@@ -7,11 +7,11 @@ import HomesGrid from '../../components/HomesGrid'
 import { getHomes } from '../../utils/API'
 
 export default class Home extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       homes: [],
-      mode: 'TABLE'
+      mode: props.match.params.viewMode || 'list'
     }
   }
 
@@ -21,15 +21,17 @@ export default class Home extends Component {
     }).catch(console.error)
   }
 
-  toggleMode = (checked) => {
-    this.setState({ mode: checked ? 'TABLE' : 'GRID' })
+  componentDidUpdate (prevProps) {
+    if (prevProps.match.params.viewMode !== this.props.match.params.viewMode) {
+      this.setState({ mode: this.props.match.params.viewMode })
+    }
   }
 
   renderHomes () {
     switch (this.state.mode) {
-      case 'TABLE':
+      case 'list':
         return (<HomesTable homes={this.state.homes} />)
-      case 'GRID':
+      case 'grid':
         return (<HomesGrid homes={this.state.homes} />)
       default:
         return (<React.Fragment />)
@@ -37,7 +39,7 @@ export default class Home extends Component {
   }
 
   render () {
-    return (<MainTemplate modeToggleHandler={this.toggleMode}>
+    return (<MainTemplate>
       <Row>
         <Col>
           {this.renderHomes()}

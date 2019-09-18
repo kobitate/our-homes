@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
-import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+// import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faExternalLink } from '@fortawesome/pro-regular-svg-icons'
@@ -11,30 +11,35 @@ export default class index extends Component {
   // state = {  }
   render () {
     return (
-      <Navbar color='primary' dark expand='md'>
+      <Navbar color='primary' dark expand='xs'>
         <Container fluid>
           <NavbarBrand href='/'>Our Homes</NavbarBrand>
           <Nav navbar>
             <NavItem>
-              <Link to='/' style={{ textDecoration: 'none' }}>
-                <NavLink
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  href='http://vow.mlspin.com/?cid=6563713&pass=chbjcxbs'>
+              <Link to='/v/grid' style={{ textDecoration: 'none' }}>
+                <NavLink>
+                  <Icon icon={faTh} />&nbsp;Grid
+                </NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to='/v/list' style={{ textDecoration: 'none' }}>
+                <NavLink>
                   <Icon icon={faThList} />&nbsp;List
                 </NavLink>
               </Link>
             </NavItem>
             <NavItem>
-              <Link to='/map' style={{ textDecoration: 'none' }}>
+              <Link to='/v/map' style={{ textDecoration: 'none' }}>
                 <NavLink
                   target='_blank'
-                  rel='noopener noreferrer'
-                  href='http://vow.mlspin.com/?cid=6563713&pass=chbjcxbs'>
+                  rel='noopener noreferrer'>
                   <Icon icon={faMap} />&nbsp;Map
                 </NavLink>
               </Link>
             </NavItem>
+          </Nav>
+          <Nav className='ml-auto d-none d-md-flex' navbar>
             <NavItem>
               <NavLink
                 target='_blank'
@@ -43,18 +48,6 @@ export default class index extends Component {
 
                 <Icon icon={faExternalLink} />&nbsp;MLS PIN
               </NavLink>
-            </NavItem>
-          </Nav>
-          <Nav className='ml-auto' navbar>
-            <NavItem>
-              {this.props.modeToggleHandler && <BootstrapSwitchButton
-                onlabel={<Icon icon={faThList} />}
-                onstyle='secondary'
-                offlabel={<Icon icon={faTh} />}
-                offstyle='secondary'
-                checked
-                onChange={checked => { this.props.modeToggleHandler(checked) }}
-              />}
             </NavItem>
           </Nav>
         </Container>

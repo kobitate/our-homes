@@ -13,7 +13,7 @@ const HomesTableItem = props => {
     <td>{props.neighborhood}</td>
     <td>{props.propertyDetails.beds}  <Icon icon={faBed} /></td>
     <td>{props.propertyDetails.fullBaths} <Icon icon={faBath} /> {props.propertyDetails.halfBaths} <Icon icon={faToilet} /> </td>
-    <td><PriceButton size='xs' {...props} /></td>
+    <td><PriceButton size='sm' {...props} /></td>
   </tr>)
 }
 

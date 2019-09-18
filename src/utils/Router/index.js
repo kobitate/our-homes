@@ -8,8 +8,9 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/map' component={Map} />
+        <Route exact path='/' component={() => <Redirect to='/v/grid' />} />
+        <Route exact path='/v/map' component={Map} />
+        <Route path='/v/:viewMode' component={Home} />
         <Route path='/home/:mlsID' component={Details} />
         <Route path='/h/:mlsID' component={props => (<Redirect to={`/home/${props.match.params.mlsID}`} />)} />
       </Switch>
