@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Filters from '../../utils/Filters'
-import { getHomes } from '../../utils/API'
 
 import { Row, Col } from 'reactstrap'
 
@@ -21,10 +20,7 @@ export default class Home extends Component {
   }
 
   componentWillMount () {
-    Promise.all([getHomes()/*, getCities() */]).then(([homesRes]) => {
-      const homes = homesRes.data
-      const availableFilters = Filters.getAvailable(homes) || []
-
+    Filters.get().then(([homes, availableFilters]) => {
       this.setState({ homes, availableFilters })
     }).catch(console.error)
   }

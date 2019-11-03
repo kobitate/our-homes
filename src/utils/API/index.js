@@ -17,7 +17,7 @@ const getHome = mlsID => {
 }
 
 const getCities = () => {
-  return axios.get(`${process.env.REACT_APP_API_URL}/cities`, options)
+  return axios.get(`${process.env.REACT_APP_API_URL}/homes/cities`, options)
 }
 
 export { getHomes, getHome, getCities }

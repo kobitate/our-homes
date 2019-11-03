@@ -1,9 +1,16 @@
 import { matchArray } from 'searchjs'
+import { getHomes, getCities } from '../../utils/API'
 
-const getAvailable = homes => {
+/**
+ * Generate filters for the frontend based on homes and cities lists
+ * @param {Array} homes list of the homes we'll be filtering
+ * @param {Object} cities List of cities and their associated ZIP Codes
+ */
+const generate = (homes, cities) => {
   let bedOptions = []
   let bathOptions = []
   let halfBathOptions = []
+  let citiesOptions = []
   const availableFilters = []
 
   homes.forEach(home => {
@@ -51,8 +58,29 @@ const getAvailable = homes => {
     }))
   }
 
-  availableFilters.push(bedOptions, bathOptions, halfBathOptions)
+  citiesOptions = {
+    id: 'cities',
+    name: 'Neighborhoods/Cities',
+    multiSelect: true,
+    options: Object.entries(cities).map(([city, zipCodes]) => ({
+      value: city,
+      label: city,
+      query: { _join: 'OR', terms: zipCodes.map(zipCode => ({ zipCode })) }
+    }))
+  }
+
+  console.log({ citiesOptions })
+  availableFilters.push(citiesOptions, bedOptions, bathOptions, halfBathOptions)
   return availableFilters
+}
+
+const get = () => {
+  return Promise.all([getHomes(), getCities()]).then(([homesRes, citiesRes]) => {
+    const homes = homesRes.data
+    const cities = citiesRes.data
+    const availableFilters = generate(homes, cities) || []
+    return [homes, availableFilters]
+  })
 }
 
 const filter = (homes, activeFilters) => {
@@ -83,7 +111,7 @@ const onFilterChange = (field, details, parent) => {
 }
 
 export default {
-  getAvailable,
+  get,
   filter,
   onFilterChange
 }
