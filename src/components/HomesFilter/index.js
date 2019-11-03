@@ -6,7 +6,7 @@ const HomesFilter = props => {
   return (<Row>
     <Col>
       <Card>
-        <CardBody className='px-2 pt-2 pb-0'>
+        <CardBody className='pl-2 pt-2 pb-0 pr-0'>
           <Row noGutters>
             {props.availableFilters.map(filter => <Col xs={6} md={3} lg={2}>
               <Select
