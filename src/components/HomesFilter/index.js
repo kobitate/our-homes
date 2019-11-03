@@ -6,11 +6,11 @@ const HomesFilter = props => {
   return (<Row>
     <Col>
       <Card>
-        <CardBody className='p-2'>
+        <CardBody className='px-2 pt-2 pb-0'>
           <Row noGutters>
-            {props.availableFilters.map(filter => <Col xs={2}>
+            {props.availableFilters.map(filter => <Col xs={6} md={3} lg={2}>
               <Select
-                className='mr-2'
+                className='mr-2 mb-2'
                 placeholder={filter.name}
                 options={filter.options}
                 isMulti={filter.multiSelect}
