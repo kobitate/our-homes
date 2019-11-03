@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Filters from '../../utils/Filters'
-import { getHomes, getCities } from '../../utils/API'
+import { getHomes } from '../../utils/API'
 
 import { Row, Col } from 'reactstrap'
 
