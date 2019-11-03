@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faHomeLg as faHomeUnknown } from '@fortawesome/pro-regular-svg-icons'
-import { faHomeLg, faCity, faCalendarAlt, faStar, faChevronLeft, faChevronRight } from '@fortawesome/pro-solid-svg-icons'
+import { faHomeLg, faCity, faCalendarAlt, faStar } from '@fortawesome/pro-solid-svg-icons'
 
 import { getImages } from '../../utils'
 import PriceButton from '../Buttons/PriceButton'
 
-import ReactSwipe from 'react-swipe'
 import { Col, Button } from 'reactstrap'
 import {
   HomeCard,
@@ -18,9 +17,7 @@ import {
   HomeCardTextInfo,
   HomeCardBadges,
   HomeNew,
-  HomeNewIcon,
-  HomeCardImageControls,
-  Control
+  HomeNewIcon
 } from './styled'
 
 export default class HomesTableItem extends Component {
@@ -36,22 +33,24 @@ export default class HomesTableItem extends Component {
     setTimeout(() => {
       const images = getImages(this.props.mlsID, this.props.photoCount)
       this.setState({
-        images: images.map(image => <HomeCardImg src={image} />)
+        // images: images.map(image => <HomeCardImg src={image} />)
+        images
       })
     }, 500)
   }
 
   render () {
-    let reactSwipeRef
+    // let reactSwipeRef
     return (<Col xs={12} sm={6} md={4} xl={3}>
       <HomeCard>
-        <ReactSwipe
+        <HomeCardImg src={(this.state.images.length === 0 || this.state.images === false) ? '/img/home-loading.png' : this.state.images[0]} />
+        {/* <ReactSwipe
           ref={ref => (reactSwipeRef = ref)}
           childCount={this.state.images === false ? 1 : this.state.images.length}>
           {(this.state.images.length === 0 || this.state.images === false)
             ? <HomeCardImg src={'/img/home-loading.png'} />
             : this.state.images}
-        </ReactSwipe>
+        </ReactSwipe> */}
         <HomeCardBadges>
           <PriceButton {...this.props} />
           &nbsp;
@@ -74,10 +73,10 @@ export default class HomesTableItem extends Component {
           </HomeCardTextInfo>
         </HomeCardText>
         <HomeCardGradient />
-        <HomeCardImageControls className='d-xs-none d-sm-flex'>
+        {/* <HomeCardImageControls className='d-xs-none d-sm-flex'>
           <Control onClick={() => reactSwipeRef.prev()}><Icon icon={faChevronLeft} size='2x' /></Control>
           <Control onClick={() => reactSwipeRef.next()}><Icon icon={faChevronRight} size='2x' /></Control>
-        </HomeCardImageControls>
+        </HomeCardImageControls> */}
       </HomeCard>
     </Col>)
   }
