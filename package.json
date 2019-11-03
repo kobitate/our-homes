@@ -23,8 +23,10 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-select": "^3.0.8",
     "react-swipe": "^6.0.4",
     "reactstrap": "^8.0.1",
+    "searchjs": "^1.0.2",
     "styled-components": "^4.3.2",
     "swipe-js-iso": "^2.1.5"
   },

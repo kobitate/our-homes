@@ -16,4 +16,8 @@ const getHome = mlsID => {
   return axios.get(`${process.env.REACT_APP_API_URL}/homes/${mlsID}?chrisbypassauth`, options)
 }
 
-export { getHomes, getHome }
+const getCities = () => {
+  return axios.get(`${process.env.REACT_APP_API_URL}/cities`, options)
+}
+
+export { getHomes, getHome, getCities }

@@ -1,23 +1,31 @@
 import React, { Component } from 'react'
+import Filters from '../../utils/Filters'
+import { getHomes, getCities } from '../../utils/API'
+
 import { Row, Col } from 'reactstrap'
 
 import MainTemplate from '../../components/MainTemplate'
 import HomesTable from '../../components/HomesTable'
 import HomesGrid from '../../components/HomesGrid'
-import { getHomes } from '../../utils/API'
+import HomesFilter from '../../components/HomesFilter'
 
 export default class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
       homes: [],
-      mode: props.match.params.viewMode || 'list'
+      mode: props.match.params.viewMode || 'list',
+      availableFilters: [],
+      activeFilters: {}
     }
   }
 
   componentWillMount () {
-    getHomes().then(res => {
-      this.setState({ homes: res.data })
+    Promise.all([getHomes()/*, getCities() */]).then(([homesRes]) => {
+      const homes = homesRes.data
+      const availableFilters = Filters.getAvailable(homes) || []
+
+      this.setState({ homes, availableFilters })
     }).catch(console.error)
   }
 
@@ -28,11 +36,12 @@ export default class Home extends Component {
   }
 
   renderHomes () {
-    switch (this.state.mode) {
+    const { mode, homes, activeFilters } = this.state
+    switch (mode) {
       case 'list':
-        return (<HomesTable homes={this.state.homes} />)
+        return (<HomesTable homes={Filters.filter(homes, activeFilters)} />)
       case 'grid':
-        return (<HomesGrid homes={this.state.homes} />)
+        return (<HomesGrid homes={Filters.filter(homes, activeFilters)} />)
       default:
         return (<React.Fragment />)
     }
@@ -42,6 +51,9 @@ export default class Home extends Component {
     return (<MainTemplate>
       <Row>
         <Col>
+          <HomesFilter
+            {...this.state}
+            onChange={(field, details) => Filters.onFilterChange(field, details, this)} />
           {this.renderHomes()}
         </Col>
       </Row>
