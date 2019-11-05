@@ -15,6 +15,8 @@ dependency_scanning:
   services:
     - docker:stable-dind
   script:
+    - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+    - npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_KEY
     - export DS_VERSION=${SP_VERSION:-$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')}
     - |
       if ! docker info &>/dev/null; then
