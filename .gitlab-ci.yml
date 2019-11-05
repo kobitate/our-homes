@@ -7,7 +7,7 @@
 
 dependency_scanning:
   stage: test
-  image: docker:stable
+  image: node:stable
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
