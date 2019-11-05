@@ -7,13 +7,14 @@
 
 dependency_scanning:
   stage: test
-  image: node:10
+  image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
   allow_failure: true
   services:
     - docker:stable-dind
+    - node:10
   script:
     - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
     - npm config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_KEY
