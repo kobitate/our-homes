@@ -16,7 +16,7 @@ dependency_scanning:
     - docker:stable-dind
     - node:10
   script:
-    #- apk add --update nodejs npm
+    - apk add yarn
     - yarn config set "@fortawesome:registry" https://npm.fontawesome.com/
     - yarn config set "//npm.fontawesome.com/:_authToken" $FONTAWESOME_KEY
     - export DS_VERSION=${SP_VERSION:-$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')}
